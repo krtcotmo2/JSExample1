@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-5 d-md-flex d-none col-lg-4  "></div>
+        <div class="col-12 ml-5 col-md-7 ml-md-0 titleBox "></div>
+    </div>
+    <div class="row align-items-center mb-4">
+        <div class="col-12 ml-0 col-md-5 col-lg-4 p-0 tableEdge" id="tableEdge">
+            <img src="./assets/images/cauldron5.png" class="cauldron" id="cauldron"/>
+        </div>
+        <div class="col-md-7 col-12 text-center" id="wordShow" >
+            <p>Word Area</p>
+        </div>
+        
+    </div>
+    <div class="row">
+        <img src="./assets/images/missedLetters.png" class="d-block ml-3"/>
+        <div class="col-12 text-left" id="theMisses"><p>Wrong Letters</p></div>
+    </div>
+    <button type="button" class="btn btn-danger mx-auto d-none" onclick="layoutWord()">Next</button
+</div>
+<div class="modal" tabindex="-1" role="dialog" aria-labelledby="..." aria-hidden="true" id="inst">
+    <div class="modal-dialog">
+        <div class="modal-content px-4 d-block border border-secondary rounded">            
+            <img src="./assets/images/SnapeHead.png" class="float-left" />
+            <p class="font-weight-bold">PAY ATTENTION!</p>
+            <p>You are about to take your final on Hogwarts vocabulary exam. Words are similar to potions in the fact they are made up of components, IE LET-TERS.</p>
+            <p>Fortunately for you in this test, the order you add your  “components” is irrelevant but adding the wrong “component” could yield disastrous results.</p>                    
+            <p>Add you component by typing in your letter. If you make a mistake, your “correct-all cauldron” will let you know how many more mistakes you can make before even I can not save you.</p>                    
+            <p>A hint will be provided if you get too close to <span class="font-weight-bold">SCREWING UP.</span> Get the word correct and you continue on, prove incompetent and Madam Pomfrey will need to open up another bed in the hospital wing. See how well you stack up against former students. My boy Draco scored quite high, mind you not as high as the ARROGANT Granger. <span class="font-weight-bold">TRY</span> not to disappoint me!</p>
+            <div class="smokeOverlay" data-dismiss="modal"></div>
+        </div>
+    </div>
+</div>
+<button class="" type="button" data-toggle="modal" data-target=".modal" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Small modal</button> -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="./assets/scripts/hangman.js"></script>
+</body>
+</html>
