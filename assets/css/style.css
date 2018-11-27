@@ -7,7 +7,6 @@ p, #theHint{color:#bebebe;}
     background: no-repeat url(../images/gameTitleSM.png);
     height: 100px;
 }
-
 #wordShow span{
     display: inline-block;
     vertical-align: bottom;
@@ -37,7 +36,6 @@ p, #theHint{color:#bebebe;}
     background: no-repeat url(../images/tableEdge.png);
     height:210px;
 }
-
 .cauldron{
     position: absolute;
     z-index: 1000;
@@ -72,7 +70,6 @@ p, #theHint{color:#bebebe;}
     perspective: 1000px;
     transform-origin: bottom center;
 }
-
 .modal-content.d-block{
     background: #000;
 }
@@ -90,62 +87,69 @@ p, #theHint{color:#bebebe;}
     opacity: 0.6;
     cursor:pointer;
 }
-  @keyframes shake1 {
-    1% {
-      transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
-    }    
-    2%{
-      transform: translate3d(2px, 0, 0) rotate(1deg);
-    }  
-    3%{
-      transform: translate3d(-2px, 0, 0) rotate(-1deg);
-    }    
-    4%, 100%{
-        transform: translate3d(0px, 0, 0) rotate(0deg);
-    }  
-  }
-  @keyframes shake2 {
-    1%, 30%, 60%, 90%{
-      transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
-    }    
-    3%, 33%, 63%, 93%{
-      transform: translate3d(2px, 0, 0) rotate(1deg);
-    }  
-    5%, 35%, 65%, 95%{
-      transform: translate3d(-2px, 0, 0) rotate(-1deg);
-    }    
-    7%, 37%, 67%, 97%, 100%{
-        transform: translate3d(0px, 0, 0) rotate(0deg);
-    }  
-  }
-  @keyframes shake3 {
-    1%, 21%, 41%, 61%, 81%{
-      transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
-    }    
-    3%, 23%, 43%, 63%, 83%{
-      transform: translate3d(2px, 0, 0) rotate(1deg);
-    }  
-    5%, 25%, 45%, 65%, 85%{
-      transform: translate3d(-2px, 0, 0) rotate(-1deg);
-    }    
-    7%, 27%, 47%, 67%, 87%, 100%{
-        transform: translate3d(0px, 0, 0) rotate(0deg);
-    }  
-  }
-  @keyframes shake4 {
-    1%, 11%, 21%, 31%, 41%, 51%, 61%, 71%, 81%, 91%{
-      transform: translate3d(-1px, 1px, 0) rotate(-1deg) ;
-    }    
-    3%, 13%, 23%, 33%, 43%, 53%, 63%, 73%, 83%, 93%{
-      transform: translate3d(2px, -1px, 0) rotate(1deg);
-    }  
-    5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
-      transform: translate3d(-2px, 2px, 0) rotate(-1deg);
-    }    
-    7%, 17%, 27%, 37%, 47%, 57%, 67%, 77%, 87%, 97%{
-        transform: translate3d(0px, -1px, 0) rotate(0deg);
-    }  
-  }
+.insBtn{
+    position: fixed;
+    top:20px;
+    right:20px;
+    cursor: pointer;
+}
+
+@keyframes shake1 {
+1% {
+    transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
+}    
+2%{
+    transform: translate3d(2px, 0, 0) rotate(1deg);
+}  
+3%{
+    transform: translate3d(-2px, 0, 0) rotate(-1deg);
+}    
+4%, 100%{
+    transform: translate3d(0px, 0, 0) rotate(0deg);
+}  
+}
+@keyframes shake2 {
+1%, 30%, 60%, 90%{
+    transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
+}    
+3%, 33%, 63%, 93%{
+    transform: translate3d(2px, 0, 0) rotate(1deg);
+}  
+5%, 35%, 65%, 95%{
+    transform: translate3d(-2px, 0, 0) rotate(-1deg);
+}    
+7%, 37%, 67%, 97%, 100%{
+    transform: translate3d(0px, 0, 0) rotate(0deg);
+}  
+}
+@keyframes shake3 {
+1%, 21%, 41%, 61%, 81%{
+    transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
+}    
+3%, 23%, 43%, 63%, 83%{
+    transform: translate3d(2px, 0, 0) rotate(1deg);
+}  
+5%, 25%, 45%, 65%, 85%{
+    transform: translate3d(-2px, 0, 0) rotate(-1deg);
+}    
+7%, 27%, 47%, 67%, 87%, 100%{
+    transform: translate3d(0px, 0, 0) rotate(0deg);
+}  
+}
+@keyframes shake4 {
+1%, 11%, 21%, 31%, 41%, 51%, 61%, 71%, 81%, 91%{
+    transform: translate3d(-1px, 1px, 0) rotate(-1deg) ;
+}    
+3%, 13%, 23%, 33%, 43%, 53%, 63%, 73%, 83%, 93%{
+    transform: translate3d(2px, -1px, 0) rotate(1deg);
+}  
+5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
+    transform: translate3d(-2px, 2px, 0) rotate(-1deg);
+}    
+7%, 17%, 27%, 37%, 47%, 57%, 67%, 77%, 87%, 97%{
+    transform: translate3d(0px, -1px, 0) rotate(0deg);
+}  
+}
 
 @media screen and (max-width:768px){
     .titleBox{
