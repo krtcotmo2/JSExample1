@@ -1,6 +1,6 @@
 html, body{margin:24px 0; background:black;}
 img{border:0px solid black;}
-p{color:white;}
+p, #theHint{color:#bebebe;}
 
 .container{margin:16px; padding:0;}
 .titleBox{
@@ -154,5 +154,12 @@ p{color:white;}
     }
     .tableEdge{
         height:175px;
+    }
+    body{
+        overflow:hidden;
+    }
+    .row div{
+        padding-left:0px;
+        padding-right:0px;
     }
 }

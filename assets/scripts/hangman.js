@@ -3,6 +3,7 @@ var theWords = ["Aconite","Acromantula","Advanced Potion Making","Amortentia","A
 var theWord, chosenLetters, matchingWord, displayedWord;
 var holder = document.getElementById("wordShow");
 var theMisses = document.getElementById("theMisses");
+var theHint = document.getElementById("theHint");
 var theButton = document.getElementsByTagName("button")
 var cal = document.getElementById("cauldron");
 var numWrong, unstable1Timer, unstable2Timer, unstable3Timer, unstable4Timer;
@@ -11,6 +12,7 @@ layoutWord();
 
 function layoutWord(){
     var num = Math.floor(Math.random() * (theWords.length -1));
+    theHint.innerHTML="";
     numWrong = 0;
     theWord = theWords.splice(num,1)[0];
     console.log(theWord);
@@ -108,6 +110,7 @@ function addUnstable(){
             cal.src="./assets/images/cauldron1.png";
             cal.classList.remove("unstable3");  
             cal.classList.add("unstable4"); 
+            theHint.innerHTML="A hint will show up here";
             break;
         default:
             break;
