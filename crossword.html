@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/cross.css">
+    <script src="./assets/scripts/word.js"></script>
+</head>
+<body>
+    <style>
+        #wordShow{height:550px;
+            width:550px; margin:0 auto; background: white;}
+        #wordShow span{
+            /* border:1px solid black;
+            border:1px solid black; */
+            position: absolute;
+            margin:1;
+            background:#ccc;
+            width:30px;
+            height: 30px;
+        }    
+        #wordShow span.space{
+            border:0px;
+            background:none;
+        }
+    </style>
+    <div id="wordShow" class="clearFix"></div>
+    <input type="button" value="New Game" class="btn btn-secondary clearfix" onclick="window.location.reload()"/>
+    <script type='text/javascript'> 
+        var letters = [];
+        var holder = document.getElementById("wordShow");
+        var isStopped = false;
+        var attempts = 0;
+        function getWord(){
+            let s = theWords[Math.floor(Math.random() * (theWords.length -1))];
+            while(s.length > 17){
+                s = theWords[Math.floor(Math.random() * (theWords.length -1))];
+            }
+           return s;
+        }
+
+        var theWords = ["Aconite","Acromantula","Advanced Potion Making","Amortentia","Animagus","Apparate","Arithmancy","Asphodel","Auror","Beater","Beazor","Bertie Botts Every Flavor Beans","Black Family Tapestry","Bludger","Boggart","Boomslang Skin","Butterbeer","Care of Magical Creatures","Cauldron Cake","Charms","Chaser","Cockroach Clusters","Daily Prophet","Dark Arts","Dark Mark","Deathly Hallows","Deathday Party","Death Eaters","Defense Against the Dark Arts","Deluminator","Dementors Kiss","Department of Mysteries","Devils Snare","Dissapparate","Dittany","Divination","Draco Dormiens Nunquam Titillandus","Draught of the Living Dead","Droobles Best Blowing Gum","Dumbledore’s Army","Dungbombs","Elixir of Life","Felix Felicis","Firebolt","Floo Network","Floo Powder","Firebolt","Firewhiskey","Ford Anglia","Fizzing Whizbees","Foe Glass","Galleon","Gamps Law of Elemental Transfiguration","Ghost","Gillyweed","Gobblededook","Gobstones","Golden Snitch","Half-Blood","Hall of Prophecies","Hand of Glory","Head Boy/Girl","Headless Hunt","Healer","Heir of Slytherin","High Inquisitor","Hogwarts Express","Horcrux","House","House Cup","Howler","Ice Mice","Inferi","Inquisitorial Squad","Keeper","Knight Bus","Knut","Kwikspell","Legilimency","Magical Me","Mandrake","Mermish","Mirror of Erised","Mudblood","Muggle","Nimbus","Obliviators","Occlumency","Omniocculars","One Eyed Witch","Order of the Phoenix","Parsletounge","Parslemouth","Patented Daydream Charm","Patronus","Pensive","Pepper Imps","Philosopher’s Stone","Pocket Sneakoscope","Poltergeist","Polyjuice Potion","Portkey","Potions","Priori Incantatem","Prophecy","Pure Blood","Put Outer","Pumpkin Pastry","Quaffle","Quibbler","Quick Quotes Quill","Quidditch","Quidditch Cup","Remebral","Seeker","Sickle","Skele-grow","Skiving Snackboxes","Snatchers","Sneakascope","Sorting Ceremony","Spattergroit","Spellotape","Splinch","Squib","Time Turner","Trace","Transfiguration","Triwizard Tournament","Unspeakables","Veil Room","Veritaserum","Weasley's Wizarding Wheezes","Werewolf","Whomping Willow","Wizards Chess","Wizards Duel","Wolfsbane","Wolfsbane Potion","Wormwood"];
+        var wordList=[];
+        
+        var w = new aWord();
+        w.word = getWord();
+        for(var d=0;d<w.word.length; d++){
+            letters[(8*17)+Math.floor((17-w.word.length)/2) + d] = w.word.charAt(d);
+        }
+        w.ypos = 8;
+        w.xpos = Math.floor((17-w.word.length)/2);
+        w.dir = "h";
+        wordList.push(w);
+        layoutWords();
+
+        function findIntersections(w1, w2){
+            for(d=0;d<w1.word.length; d++){
+                var ind = w2.word.indexOf(w1.word.charAt(d));
+                if(ind > -1){
+                    w1.sharedLetters.push(w1.word.charAt(d));
+                    w1.sharedIndex.push(ind);
+                }
+            }
+            return true;
+        }
+
+    function addAWord(){
+        attempts++
+        let w = new aWord();
+        w.dir = wordList[wordList.length-1].dir =="h" ? "v" :"h";
+        w.word = getWord();
+        for(var d=0; d< wordList.length; d++){
+            if(w.dir==wordList[d].dir){
+                continue;
+            }
+            var posWorks = false;
+            var xpos, ypos, lettersMatch;
+            //loop through words to find an intersection
+            findIntersections(w, wordList[d]);
+            
+            //loop through intersection to find spots
+            if(w.sharedLetters.length>0){
+                for(h=0;h<w.sharedLetters.length; h++){                      
+                    if(wordList[d].dir =="h"){
+                        xpos = wordList[d].xpos + w.sharedIndex[h];
+                        ypos = wordList[d].ypos - w.word.indexOf(w.sharedLetters[h]);
+                        for(c=0;c<w.word.length;c++){
+                            if(letters[xpos +(17*((c)+ypos))] != undefined && letters[xpos +(17*((c)+ypos))].toLowerCase() != w.word.charAt(h+c).toLowerCase()){
+                                lettersMatch = false;
+                                break;
+                            }else{
+                                lettersMatch=true;
+                            }
+                        }
+                        if(!lettersMatch){
+                            break;
+                        }
+                        if(ypos >=0 && ypos+w.word.length < 17){
+                            posWorks = true;
+                            w.xpos = xpos;
+                            w.ypos = ypos;
+                            wordList.push(w);
+                            break;
+                        }
+                    }else{
+                        ypos = wordList[d].ypos + w.sharedIndex[h];
+                        xpos = wordList[d].xpos - w.word.indexOf(w.sharedLetters[h]);
+                        for(c=0;c<w.word.length;c++){
+                            if(letters[xpos +(17*+ypos) + c] != undefined && letters[xpos +(17*+ypos) + c].toLowerCase() != w.word.charAt(h+c).toLowerCase()){
+                                lettersMatch = false;
+                                break;
+                            }else{
+                                lettersMatch=true;
+                            }
+                        }
+                        if(!lettersMatch){
+                            break;
+                        }
+                        if(xpos >=0 && xpos+w.word.length < 17){
+                            posWorks = true;
+                            w.xpos = xpos;
+                            w.ypos = ypos;
+                            wordList.push(w);
+                            break;
+                        }
+                    }                    
+                }  
+            }
+            if(posWorks){
+                var gg = theWords.indexOf(w.word);
+                theWords.splice(gg,1)
+                for(var h=0;h<w.word.length;h++){
+                    if(wordList[d].dir == "h"){
+                        letters[w.xpos +(17*((h)+w.ypos))] = w.word.charAt(h);
+                    }else{
+                        letters[(w.ypos*17) + w.xpos+h] = w.word.charAt(h);
+                    }
+                }
+                break;
+            }
+        }
+
+
+
+
+
+        layoutWords();
+        if(attempts > 500){
+            isStopped = true;
+        }
+    }
+    function layoutWords(){
+        holder.innerHTML="";
+        for(d=0;d<17*17;d++){
+            var s = document.createElement("span");
+            s.innerText = letters[d] != undefined ? letters[d] :"";
+            if(s.innerText === " " || s.innerText === "-" || s.innerText === "'" || s.innerText === `/` || s.innerText == ""){
+                s.classList.add("space");
+            }
+            s.style.top=(32*Math.floor(d/17)) +"px";
+            s.style.left = (32*(d%17)) +"px";
+            holder.appendChild(s);
+        }
+    }
+
+
+
+    while((wordList.length<5) || (isStopped)){
+        addAWord();
+    }
+
+
+    </script> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
