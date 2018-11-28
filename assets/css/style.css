@@ -19,6 +19,7 @@ p, #theHint{color:#bebebe;}
 #wordShow .space{
     border-bottom-width: 0px;
 }
+.red{color:red !important; font-weight: bold;}
 #theMisses{
     height: 42px;
 }
