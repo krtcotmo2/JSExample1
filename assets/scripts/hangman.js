@@ -18,7 +18,6 @@ function layoutWord(){
     fullText= theWords.splice(num,1)[0];
     theWord = fullText.split("|")[0];
     hintText = fullText.split("|")[1];
-    console.log(theWord);
     matchingWord = theWord.replace(/[" "]/g, "").toLowerCase();
     cal.classList.remove("unstable");
     cal.classList.remove("unstable4");
