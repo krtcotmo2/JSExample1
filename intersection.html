@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Hello Word</h1>
+    <div>
+        <script type="text/javascript">
+        var time1, time2;
+        var origArray = ['mississippi', 'missouri', 'massachusetts', 'minnesota', 'washington'];
+        time1 = Date.now()
+            console.log(time1)
+            class aWord {
+                constructor(xpos = 0, ypos = 0, val = "", dir = "h") {
+                    this.xpos = xpos,
+                    this.ypos = ypos,
+                    this.dir = dir,
+                    this.name = val,
+                    this.iPoints = []
+                }
+            }
+
+            class interPoint {
+                constructor(l = "0", thisI = 0, otherWordIndex = 0, otherI = []) {
+                    this.letter = l,
+                    this.thisI = thisI,
+                    this.otherWordI = otherWordIndex,
+                    this.otherI = otherI
+                }
+            }
+
+
+            var gridSize = 25;
+            var gridSqs = [];
+
+            var w1 = new aWord(0, 0, 'mississippi', "h");
+            var w2 = new aWord(0, 0, 'missouri', "v");
+            var w3 = new aWord(0, 0, 'massachusetts', "h");
+            var w4 = new aWord(0, 0, 'minnesota', "v");
+            var w5 = new aWord(0, 0, 'washington', "h");           
+
+            var theWords = [w1, w2, w3, w4, w5];  
+
+
+            setWords();
+
+            function setWords() {
+                theWords[0].xpos = Math.floor(gridSize / 2) - Math.floor(theWords[0].name.length/2);
+                theWords[0].ypos = Math.floor(gridSize / 2);
+
+                // for(let h=1;h<theWords.length; h++){
+                //     findIntersectionPrevWord(theWords[h], theWords[h-1]);
+                // }
+
+                for(let h=1;h<theWords.length; h++){
+                    findIntersectionAllWords(theWords[h], theWords);
+                }
+                time2 = Date.now()
+                console.log(time2)
+                console.log((time2-time1)/1000);
+                //sub methods
+                // function findIntersectionPrevWord(a, b) {                    
+                //     for(let d=0; d<a.name.length; d++){
+                //         let char = a.name.charAt(d); 
+                //         var idx = b.name.indexOf(char);
+                //         if(idx>-1){
+                //             let  iPoint = new interPoint();
+                //             iPoint.otherWordI = theWords.indexOf(b);
+                //             iPoint.letter=char;
+                //             iPoint.thisI = d;
+                //             let otherI = [];
+                //             while (idx != -1) {
+                //                 otherI.push(idx);
+                //                 idx = b.name.indexOf(char, idx + 1);
+                //             }
+                //             iPoint.otherI = otherI;
+                //             a.iPoints.push(iPoint);
+                //         } 
+                //     }
+                // }
+
+                function findIntersectionAllWords(a, b) {    
+                    for (c=0;c<b.length;c++){
+                        if(a.dir != b[c].dir){
+                            for(let d=0; d<a.name.length; d++){
+                                let char = a.name.charAt(d); 
+                                var idx = b[c].name.indexOf(char);
+                                if(idx>-1){
+                                    let  iPoint = new interPoint();
+                                    iPoint.otherWordI = c;
+                                    iPoint.letter=char;
+                                    iPoint.thisI = d;
+                                    let otherI = [];
+                                    while (idx != -1) {
+                                        otherI.push(idx);
+                                        idx = b[c].name.indexOf(char, idx + 1);
+                                    }
+                                    iPoint.otherI = otherI;
+                                    a.iPoints.push(iPoint);
+                                } 
+                            }
+                        }
+                    }                     
+                }
+
+                function setXPos() {
+
+                }
+
+                function setYPos() {
+
+                }
+            }
+
+            
+            
+        </script>
+    </div>
+</body>
+</html>

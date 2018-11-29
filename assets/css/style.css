@@ -168,3 +168,9 @@ p, #theHint{color:#bebebe;}
         padding-right:0px;
     }
 }
+
+
+.singleWord{
+    display: inline-block;
+    margin-right:30px;
+}
