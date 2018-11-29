@@ -30,7 +30,7 @@ function layoutWord(){
     chosenLetters=[];
     theButton[1].classList.add("d-none"); 
     theButton[1].classList.remove("d-block"); 
-   
+   /*
     phraseArray = theWord.split(" ");
     for(var c=0; c<phraseArray.length; c++){
         let aDiv = this.document.createElement("div");
@@ -49,17 +49,17 @@ function layoutWord(){
         }
         holder.appendChild(aDiv);
     }
+*/
 
 
-
-    // for(let d=0; d<theWord.length; d++){
-    //     let s = this.document.createElement("span");
-    //     if(theWord.charAt(d) === " " || theWord.charAt(d) === "-" || theWord.charAt(d) === "'" || theWord.charAt(d) === `/`){
-    //         s.classList.add("space");
-    //         s.innerText=theWord.charAt(d);
-    //     }
-    //     holder.appendChild(s);
-    // }
+    for(let d=0; d<theWord.length; d++){
+        let s = this.document.createElement("span");
+        if(theWord.charAt(d) === " " || theWord.charAt(d) === "-" || theWord.charAt(d) === "'" || theWord.charAt(d) === `/`){
+            s.classList.add("space");
+            s.innerText=theWord.charAt(d);
+        }
+        holder.appendChild(s);
+    }
     
     document.onkeypress = function(evt){
         let mod = document.getElementById("inst");
