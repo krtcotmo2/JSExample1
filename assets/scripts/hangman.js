@@ -18,7 +18,7 @@ function layoutWord(){
     fullText= theWords.splice(num,1)[0];
     theWord = fullText.split("|")[0];
     hintText = fullText.split("|")[1];   
-    console.log(theWord);
+    
     matchingWord = theWord.replace(/[" "]/g, "").toLowerCase();
     cal.classList.remove("unstable");
     cal.classList.remove("unstable4");
@@ -30,7 +30,7 @@ function layoutWord(){
     chosenLetters=[];
     theButton[1].classList.add("d-none"); 
     theButton[1].classList.remove("d-block"); 
-   /*
+    console.log(theWord);
     phraseArray = theWord.split(" ");
     for(var c=0; c<phraseArray.length; c++){
         let aDiv = this.document.createElement("div");
@@ -43,15 +43,17 @@ function layoutWord(){
             }
             aDiv.appendChild(s);
         }
-        if(c>0){
+        holder.appendChild(aDiv);
+        if(phraseArray.length>1){
             let aSpace = this.document.createElement("span");
             aSpace.classList.add("space");
+            holder.appendChild(aSpace);
         }
-        holder.appendChild(aDiv);
+        
     }
-*/
 
 
+/*
     for(let d=0; d<theWord.length; d++){
         let s = this.document.createElement("span");
         if(theWord.charAt(d) === " " || theWord.charAt(d) === "-" || theWord.charAt(d) === "'" || theWord.charAt(d) === `/`){
@@ -60,7 +62,7 @@ function layoutWord(){
         }
         holder.appendChild(s);
     }
-    
+    */
     document.onkeypress = function(evt){
         let mod = document.getElementById("inst");
         if(mod.style.display !="none" && mod.style.display !=""){

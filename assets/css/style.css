@@ -170,7 +170,7 @@ p, #theHint{color:#bebebe;}
 }
 
 
-.singleWord{
+.singleWord, .space{
     display: inline-block;
-    margin-right:30px;
+    
 }
