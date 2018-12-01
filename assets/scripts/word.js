@@ -4,6 +4,7 @@ class aWord{
         ypos=ypos,
         dir=dir,
         word=val,
+        def=val,
         sharedLetters= [],
         sharedIndex = []
     }

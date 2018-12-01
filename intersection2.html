@@ -5,28 +5,42 @@
     <meta charset="utf-8" />
     <title></title>
     <style>
+        .grids{position: relative; margin:0 auto;}
+        .grids::after{
+            content:"";
+            display: block;
+            clear:both;
+
+        }
         .sqr{
             box-sizing: border-box;
             width:20px;
             height: 20px;
-            background-color: #ccc;
+            border:1px solid black;
             display: block;
             float: left;
             margin: 0px;
             padding:0px;
+            color:rgba(0,0,0,0.2);
             line-height: 20px;
             text-align: center;
+            margin:1px;
+            font-family:  monospace;
         }
+        .sqr.blank{
+            border:none;
+        }
+        h1{text-align: center;}
     </style>
 </head>
 <body>
-    <h1>Hello Word</h1>
+    <h1>Sylterin Slang</h1>
     <div class="grids"></div>
    
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="./assets/scripts/thewords.js"></script>
         <script type="text/javascript">
-        var origArray = ['mississippi', 'missouri', 'massachusetts', 'minnesota', 'washington'];
-        var playWords = [];
+        
         class aWord {
             constructor(xpos = 0, ypos = 0, val = "", dir = "h") {
                 this.xpos = xpos,
@@ -45,103 +59,31 @@
                 this.otherI = otherI
             }
         }
+        
+        let playWords = []; //List of all words used in the actual crossword puzzle
+        let attempts = 0; //# of attempts the system tries to loop through
+        let gridSize = 20; //defines the number of letters across and high the crossword will be
+        let gridSqs = []; //an array that tracks the alue of every letter in the crossword grid
+        let firstY; //the smallest value of any starting Y position. Allows teh grid to be shifted upwards
 
-        var gridSize = 15;
-        var gridSqs = [];
-$(".grids").css("width", (20*gridSize)+"px");
-        var w1 = new aWord(0, 0, 'mississippi', "h");
-        var w2 = new aWord(0, 0, 'missouri', "v");
-        var w3 = new aWord(0, 0, 'massachusetts', "h");
-        var w4 = new aWord(0, 0, 'minnesota', "v");
-        var w5 = new aWord(0, 0, 'washington', "h");           
-
-        var theWords = [w1, w2, w3, w4, w5];  
-
-        //setWords();
-
-        function setWords() {
-            theWords[0].xpos = Math.floor(gridSize / 2) - Math.floor(theWords[0].name.length/2);
-            theWords[0].ypos = Math.floor(gridSize / 2);
-
-            // for(let h=1;h<theWords.length; h++){
-            //     findIntersectionPrevWord(theWords[h], theWords[h-1]);
-            // }
-
-            for(let h=1;h<theWords.length; h++){
-                findIntersectionAllWords(theWords[h], theWords);
-            }
-
-            //sub methods
-            // function findIntersectionPrevWord(a, b) {                    
-            //     for(let d=0; d<a.name.length; d++){
-            //         let char = a.name.charAt(d); 
-            //         var idx = b.name.indexOf(char);
-            //         if(idx>-1){
-            //             let  iPoint = new interPoint();
-            //             iPoint.otherWordI = theWords.indexOf(b);
-            //             iPoint.letter=char;
-            //             iPoint.thisI = d;
-            //             let otherI = [];
-            //             while (idx != -1) {
-            //                 otherI.push(idx);
-            //                 idx = b.name.indexOf(char, idx + 1);
-            //             }
-            //             iPoint.otherI = otherI;
-            //             a.iPoints.push(iPoint);
-            //         } 
-            //     }
-            // }
-
-            function findIntersectionAllWords(a, b) {    
-                for (c=0;c<b.length;c++){
-                    if(a.dir != b[c].dir){
-                        for(let d=0; d<a.name.length; d++){
-                            let char = a.name.charAt(d); 
-                            var idx = b[c].name.indexOf(char);
-                            if(idx>-1){
-                                let  iPoint = new interPoint();
-                                iPoint.otherWordI = c;
-                                iPoint.letter=char;
-                                iPoint.thisI = d;
-                                let otherI = [];
-                                while (idx != -1) {
-                                    otherI.push(idx);
-                                    idx = b[c].name.indexOf(char, idx + 1);
-                                }
-                                iPoint.otherI = otherI;
-                                a.iPoints.push(iPoint);
-                            } 
-                        }
-                    }
-                }                     
-            }
-
-            function setXPos() {
-
-            }
-
-            function setYPos() {
-
-            }
-        }
-
-        function getWord(){
-
-        }
+        $(".grids").css("width", (20*gridSize)+2+(gridSize*2)+"px");     
             
-        while(playWords.length < 5){
-            var wordFits = false;
-            var aw = new aWord(0,0);
-            var ind = Math.floor(Math.random()*origArray.length)
-            aw.name = origArray[ind];
-            aw.dir = playWords.length%2 == 0 ? "h": "v";
+        while((playWords.length < 10) && (attempts < 500)){
+            let wordFits = false;//Boolean the tracks whether the word fits in the puzzle
+            let aw = new aWord(0,0);//creates the new word object
+            let ind = Math.floor(Math.random()*allWords.length) //picks a random # based on teh lenght of the allwords array
+            aw.name = allWords[ind].split("|")[0]; // chooses the word/definition pair, splits it and gets the word 
+            aw.def = allWords[ind].split("|")[1]; // chooses the word/definition pair, splits it and gets the definition 
+            aw.dir = playWords.length%2 == 0 ? "h": "v"; // sets whether the word is a vertical or horizontal word
 
             findIntersectionAllWords(aw, playWords);
             wordFits = findPlacement(aw, playWords);
+            console.log(attempts);
+            attempts++;
             
-             if(wordFits){
+            if(wordFits){
                 playWords.push(aw);
-                origArray.splice(ind,1);
+                allWords.splice(ind,1);
             }
 
             function findIntersectionAllWords(a, b) {    
@@ -149,7 +91,7 @@ $(".grids").css("width", (20*gridSize)+"px");
                     if(a.dir != b[c].dir){
                         for(let d=0; d<a.name.length; d++){
                             let char = a.name.charAt(d); 
-                            var idx = b[c].name.indexOf(char);
+                            let idx = b[c].name.indexOf(char);
                             if(idx>-1){
                                 let  iPoint = new interPoint();
                                 iPoint.otherWordI = c;
@@ -169,7 +111,7 @@ $(".grids").css("width", (20*gridSize)+"px");
             }
         
             function findPlacement(a, b){
-                var temp = false;
+                let temp = false; //return value for the wordFits variable
                 if(b.length === 0){
                     aw.xpos = Math.floor(gridSize / 2) - Math.floor(aw.name.length/2);
                     aw.ypos = Math.floor(gridSize / 2);
@@ -179,11 +121,11 @@ $(".grids").css("width", (20*gridSize)+"px");
                 if(aw.dir === "v"){
                     for(let c=0; c<aw.iPoints.length; c++){
                         temp = true;
-                        var thisStartX, thisStartY, otherStartX, otherStartY
+                        let thisStartX, thisStartY, otherStartX, otherStartY
                         let ip = aw.iPoints[c];
                         otherStartX = b[ip.otherWordI].xpos;
                         otherStartY = b[ip.otherWordI].ypos;
-                        for(var d=0;d<ip.otherI.length; d++){
+                        for(let d=0;d<ip.otherI.length; d++){
                             temp = true;
                             thisStartX = otherStartX + ip.otherI[d];
                             thisStartY= otherStartY - ip.thisI;
@@ -192,14 +134,14 @@ $(".grids").css("width", (20*gridSize)+"px");
                                 temp = false; 
                                     break; 
                             }
-                            for(var e=0;e<aw.name.length;e++){                                
+                            for(let e=0;e<aw.name.length;e++){                                
                                 let gNum = thisStartX + (gridSize*(thisStartY+e));
                                 if((gridSqs[gNum] !== undefined && gridSqs[gNum] !== aw.name.charAt(e))){
                                     temp = false; 
                                     break;
                                 }
                             }
-                            for(var e=0;e<b.length;e++){   
+                            for(let e=0;e<b.length;e++){   
                                 if(b[e].dir == aw.dir && (b[e].xpos == thisStartX - 1 || b[e].xpos == thisStartX + 1 )){
                                     temp = false; 
                                     break;
@@ -228,11 +170,11 @@ $(".grids").css("width", (20*gridSize)+"px");
                 }else{
                     for(let c=0; c<aw.iPoints.length; c++){
                         temp = true;
-                        var thisStartX, thisStartY, otherStartX, otherStartY
+                        let thisStartX, thisStartY, otherStartX, otherStartY
                         let ip = aw.iPoints[c];
                         otherStartX = b[ip.otherWordI].xpos;
                         otherStartY = b[ip.otherWordI].ypos;
-                        for(var d=0; d<ip.otherI.length; d++){
+                        for(let d=0; d<ip.otherI.length; d++){
                             temp = true;
                             thisStartX = otherStartX - ip.thisI;
                             thisStartY= otherStartY + ip.otherI[d];
@@ -240,18 +182,18 @@ $(".grids").css("width", (20*gridSize)+"px");
                                 temp = false;
                                 break;
                             }
-                            for(var e=0;e<aw.name.length;e++){                                
+                            for(let e=0;e<aw.name.length;e++){                                
                                 let gNum = thisStartX + e+ (gridSize*(thisStartY));
                                 if(gridSqs[gNum] !== undefined && gridSqs[gNum] !== aw.name.charAt(e)){
                                     temp = false; 
                                     break;
                                 }                                
                             }
-                            for(var e=0;e<b.length;e++){   
+                            for(let e=0;e<b.length;e++){   
                                 if(b[e].dir == aw.dir && (b[e].ypos == thisStartY -1 || b[e].ypos == thisStartY +1 )){
                                     temp = false; 
                                     break;
-                                } else if(b[e].dir != aw.dir && (aw.xpos + aw.name.length + 1 == b[e].xpos || aw.xops-1 == b[e].xpos)){
+                                } else if(b[e].dir != aw.dir && (thisStartY == b[e].ypos - 1 || thisStartY == b[e].ypos + b[e].name.length)){
                                     temp = false; 
                                     break;
                                 }
@@ -275,29 +217,40 @@ $(".grids").css("width", (20*gridSize)+"px");
                     }
                 }
 
-                //sets value in grid
+                //sets value in gridSqr array
                 if(temp){
-                    for(var h=0;h<aw.name.length; h++){
+                    for(let h=0;h<aw.name.length; h++){
                         if(a.dir === "h"){
                             gridSqs[(aw.ypos*gridSize) + aw.xpos + h] = aw.name.charAt(h);
                         }else{
                             gridSqs[aw.xpos + (gridSize * (aw.ypos+h)) ] = aw.name.charAt(h);
                         }
                     }
-                }
-                return true;
+                }                
+                return temp;
             }
         }
-
-        for(d=0;d<gridSqs.length; d++){
-            var s = gridSqs[d] == undefined ? "" : gridSqs[d];
-            $(".grids").append("<span class='sqr'>"+s+"</span>");
-        };
-        
+        //logging words
         playWords.map(function(e){
             console.log(e.name + " x:" + e.xpos + " y:"+ e.ypos)
         });    
-        
+        console.log(playWords.length);
+
+        let displayGrid=function(){
+            for(d=0;d<gridSqs.length; d++){
+                let s = gridSqs[d] == undefined ? "" : gridSqs[d];
+                let className = gridSqs[d] == undefined ? "sqr blank":"sqr";
+                $(".grids").append("<span class='"+className+"'>"+s+"</span>");
+            };
+        }
+        //gets the row number of the item that is closest to the top of the page so we can shift the puzzle up
+        firstY = playWords.reduce(function(a,b){
+            return a < b.ypos ? a : b.ypos;
+        })
+        //shifts the crossword puzzle up to that the item aligns to the top.
+        $(".grids").css("top", "-"+(firstY*22)+"px")
+
+        displayGrid();
     </script>
     
 </body>
