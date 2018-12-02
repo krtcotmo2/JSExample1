@@ -23,8 +23,8 @@ function layoutWord(){
     //hide the reset button
     theButton[1].classList.add("d-none"); 
     theButton[1].classList.remove("d-block"); 
-
-    //reset the culdron
+    
+    //reset the cauldron
     cal.classList.remove("unstable");
     cal.classList.remove("unstable4");
     cal.classList.remove("unstable2");
@@ -180,7 +180,7 @@ function addUnstable(){
     }
     cal.classList.add("unstable");      
 }
-//cheat code to restart the game. I simply reload the page. This prevents tracking of scores for a final grade but it was a down and dirty way to get a new word
+//restart the game. I simply reload the page. this allows all words to be reloaded.
 function resetGame(){
     window.location.reload();
 }
