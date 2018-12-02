@@ -6,20 +6,16 @@ let theGame = {
     displayedWord:"",
     fullText:"", 
     hintText:"", 
-    numWrong:"", 
-    unstable1Timer:"", 
-    unstable2Timer:"", 
-    unstable3Timer:"", 
-    unstable4Timer:"", 
-    phraseArray:"",
+    numWrong:0,
+    phraseArray:[],
 
     layoutWord : function(){
         startKey();
-        let num = Math.floor(Math.random() * (theWords.length -1));
+        let wordIndex = Math.floor(Math.random() * (theWords.length -1));
         theHint.innerHTML="";
         numWrong = 0;
         
-        fullText= theWords.splice(num,1)[0];
+        fullText= theWords.splice(wordIndex,1)[0];
         theWord = fullText.split("|")[0];
         hintText = fullText.split("|")[1];   
         
@@ -34,7 +30,6 @@ let theGame = {
         chosenLetters=[];
         theButton[1].classList.add("d-none"); 
         theButton[1].classList.remove("d-block"); 
-        console.log(theWord);
         phraseArray = theWord.split(" ");
         for(let c=0; c<phraseArray.length; c++){
             let aDiv = document.createElement("div");
@@ -128,7 +123,7 @@ let theGame = {
     },
 
     resetGame : function(){
-        window.location.reload();
+        layoutWord();
     }
 }
 
