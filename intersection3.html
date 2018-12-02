@@ -6,51 +6,7 @@
     <title></title>
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  
-    <style>
-        .grids{position: relative; margin:0 auto;}
-        .grids::after{
-            content:"";
-            display: block;
-            clear:both;
-
-        }
-        .sqr{
-            box-sizing: border-box;
-            width:20px;
-            height: 20px;
-            border:1px solid black;
-            display: block;
-            float: left;
-            margin: 0px;
-            padding:0px;
-            
-            line-height: 20px;
-            text-align: center;
-            margin:1px;
-            font-family:  monospace;
-        }
-        .pointer{cursor: pointer;}
-        .sqr.blank{
-            border:none;
-        }
-        h1{text-align: center;}
-        input[class^='ans']{
-            text-align: center;
-            width:100%;
-            height: 30px;
-            line-height: 30px;
-       }
-        .modal-dialog{
-            min-width: 500px;
-        }
-
-        @media (min-width: 576px){
-            .modal-dialog.modal-dialog-centered {
-                max-width:auto !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/css/crossStyle.css">
 </head>
 <body>
     <h1>Daily Prophet</h1>
@@ -82,28 +38,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="./assets/scripts/crossWord.js"></script>
+    <script src="./assets/scripts/interPoint.js"></script>
     
-    <script type="text/javascript">
-        
-        class aWord {
-            constructor(xpos = 0, ypos = 0, val = "", dir = "h") {
-                this.xpos = xpos,
-                this.ypos = ypos,
-                this.dir = dir,
-                this.name = val,
-                this.iPoints = []
-            }
-        }
-
-        class interPoint {
-            constructor(l = "0", thisI = 0, otherWordIndex = 0, otherI = []) {
-                this.letter = l,
-                this.thisI = thisI,
-                this.otherWordI = otherWordIndex,
-                this.otherI = otherI
-            }
-        }
-        
+    <script type="text/javascript">        
         let playWords = []; //List of all words used in the actual crossword puzzle
         let attempts = 0; //# of attempts the system tries to loop through
         let gridSize = 20; //defines the number of letters across and high the crossword will be
@@ -156,6 +94,7 @@
         
             function findPlacement(a, b){
                 let temp = false; //return value for the wordFits variable
+                //set the first word to be cenetered in teh grid
                 if(b.length === 0){
                     aw.xpos = Math.floor(gridSize / 2) - Math.floor(aw.name.length/2);
                     aw.ypos = Math.floor(gridSize / 2);
@@ -163,21 +102,24 @@
                 }     
 
                 if(aw.dir === "v"){
+                    //loops through all intersection points wihin a word.
                     for(let c=0; c<aw.iPoints.length; c++){
                         temp = true;
                         let thisStartX, thisStartY, otherStartX, otherStartY
                         let ip = aw.iPoints[c];
                         otherStartX = b[ip.otherWordI].xpos;
                         otherStartY = b[ip.otherWordI].ypos;
+                        //loops trough all the intesections in the other word
                         for(let d=0;d<ip.otherI.length; d++){
                             temp = true;
                             thisStartX = otherStartX + ip.otherI[d];
                             thisStartY= otherStartY - ip.thisI;
-
+                            //Look at the first letter f the word. Make sure the start Y position is not lower than 0 (off screen)
                             if(thisStartY<0){
                                 temp = false; 
-                                    break; 
+                                break; 
                             }
+                            //Loop through all letters in the word. Make sure the suqared in the grid are empty or the letters match the specific letters
                             for(let e=0;e<aw.name.length;e++){                                
                                 let gNum = thisStartX + (gridSize*(thisStartY+e));
                                 if((gridSqs[gNum] !== undefined && gridSqs[gNum] !== aw.name.charAt(e))){
@@ -185,6 +127,7 @@
                                     break;
                                 }
                             }
+                            //make sure that in teh column to the right or left of the word
                             for(let e=0;e<b.length;e++){   
                                 if(b[e].dir == aw.dir && (b[e].xpos == thisStartX - 1 || b[e].xpos == thisStartX + 1 )){
                                     temp = false; 
@@ -194,13 +137,15 @@
                                     break;                               
                                 }
                             }
-                            
+                            //Make sure the space infont of the word is empty
                             if(gridSqs[thisStartX +(gridSize*(thisStartY-1))] != undefined){
                                 temp = false; 
                             }
+                            //Make sure the space at the end of the word is empty
                             if(gridSqs[thisStartX +(gridSize*(thisStartY +aw.name.length))] != undefined){
                                 temp = false; 
                             }
+
                             if(temp){
                                 break;
                             }

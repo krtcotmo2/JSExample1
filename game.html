@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <button class="insBtn" type="button" data-toggle="modal" data-target=".modal" aria-expanded="false" aria-label="Toggle navigation">
+        <span>Instructions</span>
+    </button>
+    <div class="container">
+        <div class="row">        
+            <div class="col-5 d-md-flex d-none col-lg-4  "></div>
+            <div class="col-12 ml-5 col-md-7 ml-md-0 titleBox "></div>
+        </div>
+        <div class="row align-items-center mb-4">
+            <div class="col-12 ml-0 col-md-5 col-lg-4 p-0 tableEdge" id="tableEdge">
+                <img src="./assets/images/cauldron5.png" class="cauldron" id="cauldron"/>
+            </div>
+            <div class="col-md-7 col-12 text-center mb-4">
+                <div class="row">
+                    <div class="col-12 text-center" id="wordShow" ></div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center mt-3" id="theHint" >
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        <div class="row">
+            <img src="./assets/images/missedLetters.png" class="d-block ml-3"/>
+            <div class="col-12 text-left pl-3" id="theMisses"></div>
+        </div>
+        <button type="button" class="btn btn-danger mx-auto d-none" id="btnNext" onclick="theGame.layoutWord()">Next</button>
+        <button type="button" class="btn btn-danger mx-auto d-none" id="btnReplay" onclick="theGame.resetGame()">Replay</button>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="..." aria-hidden="true" id="inst">
+        <div class="modal-dialog">
+            <div class="modal-content p-4 d-block border border-secondary rounded">            
+                <img src="./assets/images/SnapeHead.png" class="float-left" />
+                <p class="font-weight-bold">PAY ATTENTION!</p>
+                <p>You are about to take your final for the Hogwarts vocabulary exam. Words are similar to potions in the fact they are made up of components, IE LET-TERS.</p>
+                <p>Fortunately for you in this test, the order you add your  “components” is irrelevant but adding the wrong “component” could yield disastrous results.</p>                    
+                <p>Add you component by typing in your letter. If you make a mistake, your “correct-all cauldron” will let you know how many more mistakes you can make before even I can not save you.</p>                    
+                <p>A hint will be provided if you get too close to <span class="font-weight-bold">SCREWING UP.</span> Get the word correct and you continue on, prove incompetent and Madam Pomfrey will need to open up another bed in the hospital wing. See how well you stack up against former students. My boy Draco scored quite high, mind you not as high as the ARROGANT Granger. <span class="font-weight-bold">TRY</span> not to disappoint me!</p>
+                <div class="smokeOverlay" data-dismiss="modal"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./assets/scripts/slangWords.js"></script>
+    <script src="./assets/scripts/slangObject.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type='text/javascript'> 
+        let holder = document.getElementById("wordShow");
+        let theMisses = document.getElementById("theMisses");
+        let theHint = document.getElementById("theHint");
+        let theButton = document.getElementsByTagName("button")
+        let cal = document.getElementById("cauldron");
+        let startKey = function(){
+            document.onkeypress = function(evt){
+                let mod = document.getElementById("inst");
+                if(mod.style.display !="none" && mod.style.display !=""){
+                    return;
+                }
+                let theLetter = evt.key.toLowerCase();
+                if(chosenLetters.indexOf(theLetter) > -1){
+                    return;
+                }else{
+                    chosenLetters.push(theLetter);
+                }
+                if(evt.code.toString().includes("Key")){
+                    var isGoodLetter = theWord.toLowerCase().includes(theLetter);
+                    if(isGoodLetter){
+                        theGame.placeLetter(theLetter);
+                    }else{
+                        theGame.addToMisses(theLetter)
+                    }
+                }
+            }
+        }       
+        theGame.layoutWord();
+
+    </script> 
+</body>
+</html>

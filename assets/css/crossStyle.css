@@ -1,0 +1,42 @@
+.grids{position: relative; margin:0 auto;}
+        .grids::after{
+            content:"";
+            display: block;
+            clear:both;
+
+        }
+        .sqr{
+            box-sizing: border-box;
+            width:20px;
+            height: 20px;
+            border:1px solid black;
+            display: block;
+            float: left;
+            margin: 0px;
+            padding:0px;
+            
+            line-height: 20px;
+            text-align: center;
+            margin:1px;
+            font-family:  monospace;
+        }
+        .pointer{cursor: pointer;}
+        .sqr.blank{
+            border:none;
+        }
+        h1{text-align: center;}
+        input[class^='ans']{
+            text-align: center;
+            width:100%;
+            height: 30px;
+            line-height: 30px;
+       }
+        .modal-dialog{
+            min-width: 500px;
+        }
+
+        @media (min-width: 576px){
+            .modal-dialog.modal-dialog-centered {
+                max-width:auto !important;
+            }
+        }
