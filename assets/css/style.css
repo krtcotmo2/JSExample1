@@ -98,7 +98,7 @@ p, #theHint{color:#bebebe;}
     position: absolute;
     bottom:12px;
     z-index: 5001;
-    left:calc(50% - 50px);
+    left:calc(50% - 36px);
 }
 @keyframes shake1 {
 1% {
