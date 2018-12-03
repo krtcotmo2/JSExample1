@@ -1,182 +1,41 @@
-html, body{margin:24px 0; background:black;}
-img{border:0px solid black;}
-p, #theHint{color:#bebebe;}
+.grids{position: relative; margin:0 auto;}
+        .grids::after{
+            content:"";
+            display: block;
+            clear:both;
 
-.container{margin:16px; padding:0;}
-.titleBox{
-    background: no-repeat url(../images/gameTitleSM.png);
-    height: 100px;
-}
-#wordShow span{
-    display: inline-block;
-    vertical-align: bottom;
-    width:30px;
-    padding:0px 0 0px 0;
-    margin:0 1px;
-    border-bottom:1px solid #bebebe;
-    color:#bebebe;
-}
-#wordShow .space{
-    border-bottom-width: 0px;
-}
-.red{color:red !important; font-weight: bold;}
-#theMisses{
-    height: 42px;
-}
-#theMisses span{
-    display: inline-block;
-    vertical-align: bottom;
-    text-align: center;
-    width:30px;
-    margin:0 1px;
-    line-height: 30px;
-    border:1px solid black;
-    background: #fa2;
-}
-.tableEdge{
-    background: no-repeat url(../images/tableEdge.png);
-    height:210px;
-}
-.cauldron{
-    position: absolute;
-    z-index: 1000;
-    left:60px;
-    top:20px;
-}
-.cauldron.unstable{
-    animation: shake1 5s cubic-bezier(.36,.07,.19,.97) both infinite;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-    transform-origin: bottom center;
-}
-.cauldron.unstable2{
-    animation: shake2 4s cubic-bezier(.36,.07,.19,.97) both  infinite;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-    transform-origin: bottom center;
-}
-.cauldron.unstable3{
-    animation: shake3 2s cubic-bezier(.36,.07,.19,.97) both infinite;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-    transform-origin: bottom center;
-}
-.cauldron.unstable4{
-    animation: shake4 1s cubic-bezier(.36,.07,.19,.97) both infinite;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-    transform-origin: bottom center;
-}
-.modal-content.d-block{
-    background: #000;
-}
-.modal-content.d-block p{ 
-    color:#bebebe;
-}
-.smokeOverlay{
-    position: absolute;
-    top:0px;
-    left:0px;
-    right:0px;
-    bottom: 0px;
-    z-index:500;
-    background: url(../images/smokeOverlay.png);
-    opacity: 0.6;
-    cursor:pointer;
-}
-.insBtn{
-    position: fixed;
-    top:20px;
-    right:20px;
-    cursor: pointer;
-}
-.btnReplay{
-    position: absolute;
-    bottom:12px;
-    z-index: 5001;
-    left:calc(50% - 50px);
-}
-@keyframes shake1 {
-1% {
-    transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
-}    
-2%{
-    transform: translate3d(2px, 0, 0) rotate(1deg);
-}  
-3%{
-    transform: translate3d(-2px, 0, 0) rotate(-1deg);
-}    
-4%, 100%{
-    transform: translate3d(0px, 0, 0) rotate(0deg);
-}  
-}
-@keyframes shake2 {
-1%, 30%, 60%, 90%{
-    transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
-}    
-3%, 33%, 63%, 93%{
-    transform: translate3d(2px, 0, 0) rotate(1deg);
-}  
-5%, 35%, 65%, 95%{
-    transform: translate3d(-2px, 0, 0) rotate(-1deg);
-}    
-7%, 37%, 67%, 97%, 100%{
-    transform: translate3d(0px, 0, 0) rotate(0deg);
-}  
-}
-@keyframes shake3 {
-1%, 21%, 41%, 61%, 81%{
-    transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
-}    
-3%, 23%, 43%, 63%, 83%{
-    transform: translate3d(2px, 0, 0) rotate(1deg);
-}  
-5%, 25%, 45%, 65%, 85%{
-    transform: translate3d(-2px, 0, 0) rotate(-1deg);
-}    
-7%, 27%, 47%, 67%, 87%, 100%{
-    transform: translate3d(0px, 0, 0) rotate(0deg);
-}  
-}
-@keyframes shake4 {
-1%, 11%, 21%, 31%, 41%, 51%, 61%, 71%, 81%, 91%{
-    transform: translate3d(-1px, 1px, 0) rotate(-1deg) ;
-}    
-3%, 13%, 23%, 33%, 43%, 53%, 63%, 73%, 83%, 93%{
-    transform: translate3d(2px, -1px, 0) rotate(1deg);
-}  
-5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
-    transform: translate3d(-2px, 2px, 0) rotate(-1deg);
-}    
-7%, 17%, 27%, 37%, 47%, 57%, 67%, 77%, 87%, 97%{
-    transform: translate3d(0px, -1px, 0) rotate(0deg);
-}  
-}
+        }
+        .sqr{
+            box-sizing: border-box;
+            width:20px;
+            height: 20px;
+            border:1px solid black;
+            display: block;
+            float: left;
+            margin: 0px;
+            padding:0px;
+            line-height: 20px;
+            text-align: center;
+            margin:1px;
+            font-family:  monospace;
+        }
+        .pointer{cursor: pointer;  border:2px solid red;}
+        .sqr.blank{
+            border:none;
+        }
+        h1{text-align: center;}
+        input[class^='ans']{
+            text-align: center;
+            width:100%;
+            height: 30px;
+            line-height: 30px;
+       }
+        .modal-dialog{
+            min-width: 500px;
+        }
 
-@media screen and (max-width:768px){
-    .titleBox{
-        background: no-repeat url(../images/gameTitleXSM.png);
-        height: 65px;
-    }
-    .tableEdge{
-        height:175px;
-    }
-    body{
-        overflow:hidden;
-    }
-    .row div{
-        padding-left:0px;
-        padding-right:0px;
-    }
-}
-
-
-.singleWord, .space{
-    display: inline-block;
-}
-
-        
+        @media (min-width: 576px){
+            .modal-dialog.modal-dialog-centered {
+                max-width:auto !important;
+            }
+        }

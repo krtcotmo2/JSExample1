@@ -94,7 +94,12 @@ p, #theHint{color:#bebebe;}
     right:20px;
     cursor: pointer;
 }
-
+.btnReplay{
+    position: absolute;
+    bottom:12px;
+    z-index: 5001;
+    left:calc(50% - 50px);
+}
 @keyframes shake1 {
 1% {
     transform: translate3d(-1px, 0, 0) rotate(-1deg) ;
@@ -172,5 +177,6 @@ p, #theHint{color:#bebebe;}
 
 .singleWord, .space{
     display: inline-block;
-    
 }
+
+        

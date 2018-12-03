@@ -196,13 +196,11 @@ let theGame = {
         }else if(arg < 0.6){
             res = "<b>You Failed!?!</b><br/><br/>Your level of <b>ineptitude</b> appears to be boundless. You deserve to be in this bed, in <b>pain!</b> I dumbed it down so even <b>you</b> couldn't screw it up. Even <b>Potter</b> managed to pass this test!<br/><br/> The saddest part of this whole fiasco is that you will need to repeat the class and I will have to endure you presence once again.";}
         return res;
-    }, //reloads the page - allows all words to be used again
+    }, 
+    
+    //reloads the page - allows all words to be used again
     resetGame : function(){
         window.location.reload();
     }
-
-    
-
-
 }
 
