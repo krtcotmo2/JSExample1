@@ -269,6 +269,7 @@ firstY = playWords.reduce(function (wrd1, wrd2) {
     return wrd1 < wrd2.ypos ? wrd1 : wrd2.ypos;
 })
 $(".grids").css("top", "-" + (firstY * 22) + "px")
+$("body p").css("top", "-" + (firstY * 22) + "px")
 
 
 //MODAL WINDOW LISTENERS
@@ -346,7 +347,7 @@ let openModal = function (e) {
                 }
             }
         };
-        $('.modal').modal("toggle");
+        $('.modal').modal("hide");
     
     
     }

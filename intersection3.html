@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="./assets/css/crossStyle.css">
 </head>
 <body>
+    <button class="insBtn btn btn-secondary" type="button" data-toggle="modal" data-target="#inst" aria-expanded="false" aria-label="Toggle navigation">
+                <span>Instructions</span></button>
     <h1>Daily Prophet</h1>
     <div class="grids"></div>
-    <p style="text-align:center">by Rita Skeeter</p>
+    <p class="bodyP">by Rita Skeeter</p>
+    <p class="bodyP"><a href="intersection3.html" class="badge badge-secondary p-2">New Game</a></p>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -34,10 +37,23 @@
             </div>
         </div>
         </div>
-    </div>   
+    </div>
 
-    
-
+    <div class="modal" tabindex="-1" role="dialog" id="inst">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Instructions</h5>
+            </div>
+            <div class="modal-body">
+              <span>Click on a red square to open up the clue for the word. If there is an option for down and across, both clues are offered. Type in your answer to the clue and press enter or click the check answer button. If the answer is correct, the word populates. If the answer is wrong, the crossword puzzle will not complete itself.</span>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn-sm btn-secondary text-center " data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <script src="./assets/scripts/prophetWords.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

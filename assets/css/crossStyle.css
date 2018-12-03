@@ -23,7 +23,14 @@
         .sqr.blank{
             border:none;
         }
+        .bodyP{text-align: center; position: relative;}
         h1{text-align: center;}
+        .insBtn{
+            position: fixed;
+            top:20px;
+            right:20px;
+            cursor: pointer;
+        }
         input[class^='ans']{
             text-align: center;
             width:100%;
