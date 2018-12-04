@@ -73,4 +73,9 @@ body{
             .modal-dialog.modal-dialog-centered {
                 max-width:auto !important;
             }
+
+        }
+        @media (max-width: 975px){
+            .lt, .rt{display:none;}
+            .grids{float:none; margin:0 auto;}
         }
