@@ -5,6 +5,7 @@ let gridSqs = []; //an array that tracks the alue of every letter in the crosswo
 let firstY; //the smallest value of any starting Y position. Allows the grid to be shifted upwards
 const numOfWordsInList = allWords.length;
 
+$("#todayDate").html(new Date().toLocaleDateString());
 //METHODS
 let displayGrid = function () {
     for (d = 0; d < gridSqs.length; d++) {
@@ -347,9 +348,7 @@ let openModal = function (e) {
                 }
             }
         };
-        $('.modal').modal("hide");
-    
-    
+        $('.modal').modal("hide");     
     }
    
 }
