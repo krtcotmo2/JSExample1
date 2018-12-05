@@ -1,5 +1,6 @@
 body{
     background:url(../images/bkPaper.jpg);
+    min-width: 440px;
 }
 .masthead{
     text-align: center; 
@@ -68,7 +69,12 @@ body{
         .modal-dialog{
             min-width: 500px;
         }
-
+        .mastheadImg{
+            background: url(../images/masthead.png);
+            height:177px;
+            width:  935px;
+            margin:0 auto;
+        }
         @media (min-width: 576px){
             .modal-dialog.modal-dialog-centered {
                 max-width:auto !important;
@@ -78,4 +84,16 @@ body{
         @media (max-width: 975px){
             .lt, .rt{display:none;}
             .grids{float:none; margin:0 auto;}
+            .mastheadImg{
+                background: url(../images/masthead-md.png);
+                height:177px;
+                width:  768px;
+            }
+        }
+        @media (max-width: 768px){
+            .mastheadImg{
+                background: url(../images/masthead-sm.png);
+                height:177px;
+                width: 440px;
+            }
         }
