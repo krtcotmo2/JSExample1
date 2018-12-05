@@ -67,7 +67,7 @@ body{
             line-height: 30px;
        }
         .modal-dialog{
-            min-width: 500px;
+            min-width: 440px;
         }
         .mastheadImg{
             background: url(../images/masthead.png);
@@ -95,5 +95,11 @@ body{
                 background: url(../images/masthead-sm.png);
                 height:177px;
                 width: 440px;
+            }
+        }
+        @media (max-width: 520px){
+            .modal,.modal-dialog,.modal-content{
+                width: 460px !important;
+                max-width: 460px !important;
             }
         }
