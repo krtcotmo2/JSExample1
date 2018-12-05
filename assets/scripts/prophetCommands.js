@@ -12,6 +12,7 @@ let displayGrid = function () {
         let className = gridSqs[d] == undefined ? "sqr blank" : "sqr";
         $(".grids").append("<span id='s" + d + "' class='" + className + "'></span>");
     };
+    
 }
 let findWords = function(){ 
     let tempArray= [];
