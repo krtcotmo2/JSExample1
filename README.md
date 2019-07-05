@@ -5,7 +5,7 @@ Develop a JavaScript driven hangman game where users can type in letters and get
 
 # The Games
 #### Introducing [Slytherin Slang](https://krtcotmo2.github.io/wordGames/)
-In this version styled everything after the Harry Potter series, the look, the words, the premises of the game and even have Snape delving the instructions. I gathered an array of terms and definitions from the Harry potter books and placed them into an array. When the game starts a random word or phrase is posted. The user can begin typing in letters. Each key press checks to see if the letter appears in the chosen word. If it did, it display the letter int eh sequence. I detected if the user was done when the letters displayed were equal to the chosen word. 
+In this version styled everything after the Harry Potter series, the look, the words, the premises of the game and even have Professor Snape delving the instructions. I gathered an array of terms and definitions from the Harry potter books and placed them into an array. When the game starts a random word or phrase is posted on the screen. I made sure that the letters stayed together as one word in the event that the window is resized. The user can begin typing in letters. Each key press checks to see if the letter appears in the chosen word. If it did, it display the letter int eh sequence. I detected if the user was done when the letters displayed were equal to the chosen word.
 
 The motion of the “Correct All Cauldron” are controlled by css animations.
 
@@ -17,8 +17,8 @@ Using the exact same list of 144 words and phrases, I went for an ambitious adva
 To reveal the clues for the crossword puzzle, the user clicks on first box of the word (outlined in red) to open up a Bootstrap modal with the clue. If the user is correct, the word appears in the puzzle. There is no penalty for getting a word wrong. 
 
 Since the words are not common I wrote the answers to clues in the console so the user can see the puzzle working properly. 
-#Local Setup
 
+#### Local Setup
 These interactions are simple HTML5, CSS, jQuery. Downloading the files and running them in a local browser is all that is needed to activate the games locally.
  
 
