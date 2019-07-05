@@ -1,5 +1,5 @@
 # The Assignment
-![alt text](https://img.shields.io/badge/uses-jQuery-blue.svg)  ![alt text](https://img.shields.io/badge/uses-Custom_CSS-blue.svg)
+![alt text](https://img.shields.io/badge/uses-jQuery-blue.svg)  ![alt text](https://img.shields.io/badge/uses-Custom_CSS-blue.svg)  ![alt text](https://img.shields.io/badge/uses-Responsive_Design-blue.svg)
 
 Develop a JavaScript driven hangman game where users can type in letters and get feedback if the letter selected is part of an unknown word or if the user is one step closer to losing the game. Not wanting the project to be the same as every other game, I made some variations.
 
