@@ -15,6 +15,7 @@ Upon completion of this interaction I moved forward to the next variation of wor
 
 #### [The Crossword Puzzle](https://krtcotmo2.github.io/wordGames/intersection3.html)
 [<img align="center" src="https://github.com/krtcotmo2/wordGames/blob/master/assets/images/prophet.png"/>](https://krtcotmo2.github.io/wordGames/intersection3.html)
+
 Using the exact same list of 144 words and phrases, I went for an ambitious advancement. I set up a series of loops that would select the first word and then randomly select another word. The code would then loop though each letter of the new word and see if it intersected with the previous word. If the intersection was not valid it chose another word until it could find a fit. Once it found that word it would continue to loop though, repeating the same process where the new word looked for intersection points while not causing conflicts with other words and show them in a completely random crossword puzzle within a potential 20 x20 grid.
 
 To reveal the clues for the crossword puzzle, the user clicks on first box of the word (outlined in red) to open up a Bootstrap modal with the clue. If the user is correct, the word appears in the puzzle. There is no penalty for getting a word wrong. 
